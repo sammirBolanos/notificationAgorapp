@@ -1,12 +1,13 @@
 package com.agorapp.notificationagorapp.qpr;
 
+import java.util.List;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/qprs")
@@ -24,9 +25,19 @@ public class QPRController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<QPR> getQprById(@PathVariable Long id) {
+    public ResponseEntity<QPR> getQprById(@PathVariable String id) {
         return qprRepository.findById(id)
                 .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
+    }
+
+    @PatchMapping("/{id}/resolver")
+    public ResponseEntity<QPR> resolverQpr(@PathVariable String id) {
+        return qprRepository.findById(id)
+                .map(qpr -> {
+                    qpr.setPqrs("False");
+                    return ResponseEntity.ok(qprRepository.save(qpr));
+                })
                 .orElse(ResponseEntity.notFound().build());
     }
 }

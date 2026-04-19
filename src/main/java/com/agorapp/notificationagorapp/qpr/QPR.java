@@ -1,36 +1,40 @@
 package com.agorapp.notificationagorapp.qpr;
 
+import java.time.LocalDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.time.LocalDate;
-
 @Entity
-@Table(name = "qpr")
+@Table(name = "pqrs")
 public class QPR {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "radicado")
+    private String id;
 
     @Column(nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
-    private String estado;
+    @Column(name = "pqrs", nullable = false)
+    private String pqrs;
 
     @Column(nullable = false)
-    private LocalDate fecha;
+    private String canal;
 
-    public Long getId() {
+    @Column(nullable = false)
+    private String username;
+
+    @Column(name = "fecha_utc", nullable = false)
+    private LocalDateTime fechaUtc;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,19 +46,35 @@ public class QPR {
         this.nombre = nombre;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getPqrs() {
+        return pqrs;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setPqrs(String pqrs) {
+        this.pqrs = pqrs;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getCanal() {
+        return canal;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setCanal(String canal) {
+        this.canal = canal;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public LocalDateTime getFechaUtc() {
+        return fechaUtc;
+    }
+
+    public void setFechaUtc(LocalDateTime fechaUtc) {
+        this.fechaUtc = fechaUtc;
     }
 }
