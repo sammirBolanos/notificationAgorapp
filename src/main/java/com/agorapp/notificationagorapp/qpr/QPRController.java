@@ -25,17 +25,17 @@ public class QPRController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<QPR> getQprById(@PathVariable Long id) {
+    public ResponseEntity<QPR> getQprById(@PathVariable String id) {
         return qprRepository.findById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
     }
 
     @PatchMapping("/{id}/resolver")
-    public ResponseEntity<QPR> resolverQpr(@PathVariable Long id) {
+    public ResponseEntity<QPR> resolverQpr(@PathVariable String id) {
         return qprRepository.findById(id)
                 .map(qpr -> {
-                    qpr.setEstado("False");
+                    qpr.setPqrs("False");
                     return ResponseEntity.ok(qprRepository.save(qpr));
                 })
                 .orElse(ResponseEntity.notFound().build());
