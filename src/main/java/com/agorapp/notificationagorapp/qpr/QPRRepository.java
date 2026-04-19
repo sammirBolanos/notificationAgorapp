@@ -19,7 +19,7 @@ public interface QPRRepository extends JpaRepository<QPR, String> {
 
 	@Query(value = """
 			SELECT radicado, pqrs, canal, fecha_utc, username, nombre, secretaria,
-			       titulo_ia, resumen_ia, clasificacion, fecha_limite, irrespetuosa, resuelta
+			       titulo_ia, resumen_ia, respuesta_sugerida, clasificacion, fecha_limite, irrespetuosa, resuelta
 			FROM pqrs_procesada
 			WHERE regexp_replace(
 				lower(trim(translate(secretaria,

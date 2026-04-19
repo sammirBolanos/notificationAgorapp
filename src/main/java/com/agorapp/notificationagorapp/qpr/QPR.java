@@ -40,6 +40,9 @@ public class QPR {
     @Column(name = "resumen_ia")
     private String resumenIa;
 
+    @Column(name = "respuesta_sugerida")
+    private String respuestaSugerida;
+
     @Column(name = "clasificacion")
     private String clasificacion;
 
@@ -122,6 +125,14 @@ public class QPR {
 
     public void setResumenIa(String resumenIa) {
         this.resumenIa = resumenIa;
+    }
+
+    public String getRespuestaSugerida() {
+        return respuestaSugerida;
+    }
+
+    public void setRespuestaSugerida(String respuestaSugerida) {
+        this.respuestaSugerida = respuestaSugerida;
     }
 
     public String getClasificacion() {
