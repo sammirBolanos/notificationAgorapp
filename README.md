@@ -103,3 +103,53 @@ La entidad `QPR` incluye:
 - `nombre` (`String`)
 - `estado` (`String`)
 - `fecha` (`LocalDate`)
+
+## Despliegue con Docker y Render
+
+Se agregaron estos archivos para facilitar despliegue:
+
+- `Dockerfile`
+- `docker-compose.yml`
+- `.dockerignore`
+- `render.yaml` (opcional, para Blueprint en Render)
+
+### 1. Levantar local con Docker Compose
+
+Antes de ejecutar, crea un `.env` con credenciales reales de Neon:
+
+```env
+DB_URL=jdbc:postgresql://<host-neon>/<db>?sslmode=require&channelBinding=require
+DB_USERNAME=<usuario>
+DB_PASSWORD=<password>
+CORS_ALLOWED_ORIGINS=*
+```
+
+Luego ejecuta:
+
+```powershell
+docker compose up --build
+```
+
+API disponible en `http://localhost:8082`.
+
+### 2. Desplegar en Render (paso a paso)
+
+Render no usa `docker-compose.yml` para producción; usa `Dockerfile` (o `render.yaml` como plantilla).
+
+1. Sube el proyecto a GitHub.
+2. En Render, crea un `New +` -> `Web Service`.
+3. Conecta el repositorio.
+4. Runtime: `Docker`.
+5. En variables de entorno configura:
+	- `SPRING_PROFILES_ACTIVE=default`
+	- `DB_URL=...`
+	- `DB_USERNAME=...`
+	- `DB_PASSWORD=...`
+	- `CORS_ALLOWED_ORIGINS=*` (o dominio de tu frontend)
+6. Deploy.
+
+Listo: Render inyecta `PORT` automáticamente y la app ya está preparada para usarlo.
+
+### 3. URL de Swagger en Render
+
+- `https://<tu-servicio>.onrender.com/swagger-ui/index.html`
