@@ -1,37 +1,98 @@
 package com.agorapp.notificationagorapp.qpr;
 
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
-import java.time.LocalDate;
-
 @Entity
-@Table(name = "qpr")
+@Table(name = "pqrs_procesada")
 public class QPR {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    @Column(name = "radicado")
+    private String id;
 
-    @Column(nullable = false)
+    @Column(name = "pqrs", nullable = false)
+    private String pqrs;
+
+    @Column(name = "canal")
+    private String canal;
+
+    @Column(name = "fecha_utc")
+    private OffsetDateTime fechaUtc;
+
+    @Column(name = "username")
+    private String username;
+
+    @Column(name = "nombre")
     private String nombre;
 
-    @Column(nullable = false)
-    private String estado;
+    @Column(name = "secretaria")
+    private String secretaria;
 
-    @Column(nullable = false)
-    private LocalDate fecha;
+    @Column(name = "titulo_ia")
+    private String tituloIa;
 
-    public Long getId() {
+    @Column(name = "resumen_ia")
+    private String resumenIa;
+
+    @Column(name = "respuesta_sugerida")
+    private String respuestaSugerida;
+
+    @Column(name = "clasificacion")
+    private String clasificacion;
+
+    @Column(name = "fecha_limite")
+    private LocalDate fechaLimite;
+
+    @Column(name = "irrespetuosa")
+    private Boolean irrespetuosa;
+
+    @Column(name = "resuelta")
+    private Boolean resuelta;
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
+    }
+
+    public String getPqrs() {
+        return pqrs;
+    }
+
+    public void setPqrs(String pqrs) {
+        this.pqrs = pqrs;
+    }
+
+    public String getCanal() {
+        return canal;
+    }
+
+    public void setCanal(String canal) {
+        this.canal = canal;
+    }
+
+    public OffsetDateTime getFechaUtc() {
+        return fechaUtc;
+    }
+
+    public void setFechaUtc(OffsetDateTime fechaUtc) {
+        this.fechaUtc = fechaUtc;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getNombre() {
@@ -42,19 +103,67 @@ public class QPR {
         this.nombre = nombre;
     }
 
-    public String getEstado() {
-        return estado;
+    public String getSecretaria() {
+        return secretaria;
     }
 
-    public void setEstado(String estado) {
-        this.estado = estado;
+    public void setSecretaria(String secretaria) {
+        this.secretaria = secretaria;
     }
 
-    public LocalDate getFecha() {
-        return fecha;
+    public String getTituloIa() {
+        return tituloIa;
     }
 
-    public void setFecha(LocalDate fecha) {
-        this.fecha = fecha;
+    public void setTituloIa(String tituloIa) {
+        this.tituloIa = tituloIa;
+    }
+
+    public String getResumenIa() {
+        return resumenIa;
+    }
+
+    public void setResumenIa(String resumenIa) {
+        this.resumenIa = resumenIa;
+    }
+
+    public String getRespuestaSugerida() {
+        return respuestaSugerida;
+    }
+
+    public void setRespuestaSugerida(String respuestaSugerida) {
+        this.respuestaSugerida = respuestaSugerida;
+    }
+
+    public String getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
+    public LocalDate getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(LocalDate fechaLimite) {
+        this.fechaLimite = fechaLimite;
+    }
+
+    public Boolean getIrrespetuosa() {
+        return irrespetuosa;
+    }
+
+    public void setIrrespetuosa(Boolean irrespetuosa) {
+        this.irrespetuosa = irrespetuosa;
+    }
+
+    public Boolean getResuelta() {
+        return resuelta;
+    }
+
+    public void setResuelta(Boolean resuelta) {
+        this.resuelta = resuelta;
     }
 }
