@@ -1,6 +1,7 @@
 package com.agorapp.notificationagorapp.qpr;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.OffsetDateTime;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -8,30 +9,48 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "pqrs")
+@Table(name = "pqrs_procesada")
 public class QPR {
 
     @Id
     @Column(name = "radicado")
     private String id;
 
-    @Column(nullable = false)
-    private String nombre;
-
     @Column(name = "pqrs", nullable = false)
     private String pqrs;
 
-    @Column(nullable = false)
+    @Column(name = "canal")
     private String canal;
 
-    @Column(nullable = false)
+    @Column(name = "fecha_utc")
+    private OffsetDateTime fechaUtc;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "nombre")
+    private String nombre;
 
     @Column(name = "secretaria")
     private String secretaria;
 
-    @Column(name = "fecha_utc", nullable = false)
-    private LocalDateTime fechaUtc;
+    @Column(name = "titulo_ia")
+    private String tituloIa;
+
+    @Column(name = "resumen_ia")
+    private String resumenIa;
+
+    @Column(name = "clasificacion")
+    private String clasificacion;
+
+    @Column(name = "fecha_limite")
+    private LocalDate fechaLimite;
+
+    @Column(name = "irrespetuosa")
+    private Boolean irrespetuosa;
+
+    @Column(name = "resuelta")
+    private Boolean resuelta;
 
     public String getId() {
         return id;
@@ -39,14 +58,6 @@ public class QPR {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getNombre() {
-        return nombre;
-    }
-
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
     }
 
     public String getPqrs() {
@@ -65,12 +76,28 @@ public class QPR {
         this.canal = canal;
     }
 
+    public OffsetDateTime getFechaUtc() {
+        return fechaUtc;
+    }
+
+    public void setFechaUtc(OffsetDateTime fechaUtc) {
+        this.fechaUtc = fechaUtc;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 
     public String getSecretaria() {
@@ -81,11 +108,51 @@ public class QPR {
         this.secretaria = secretaria;
     }
 
-    public LocalDateTime getFechaUtc() {
-        return fechaUtc;
+    public String getTituloIa() {
+        return tituloIa;
     }
 
-    public void setFechaUtc(LocalDateTime fechaUtc) {
-        this.fechaUtc = fechaUtc;
+    public void setTituloIa(String tituloIa) {
+        this.tituloIa = tituloIa;
+    }
+
+    public String getResumenIa() {
+        return resumenIa;
+    }
+
+    public void setResumenIa(String resumenIa) {
+        this.resumenIa = resumenIa;
+    }
+
+    public String getClasificacion() {
+        return clasificacion;
+    }
+
+    public void setClasificacion(String clasificacion) {
+        this.clasificacion = clasificacion;
+    }
+
+    public LocalDate getFechaLimite() {
+        return fechaLimite;
+    }
+
+    public void setFechaLimite(LocalDate fechaLimite) {
+        this.fechaLimite = fechaLimite;
+    }
+
+    public Boolean getIrrespetuosa() {
+        return irrespetuosa;
+    }
+
+    public void setIrrespetuosa(Boolean irrespetuosa) {
+        this.irrespetuosa = irrespetuosa;
+    }
+
+    public Boolean getResuelta() {
+        return resuelta;
+    }
+
+    public void setResuelta(Boolean resuelta) {
+        this.resuelta = resuelta;
     }
 }

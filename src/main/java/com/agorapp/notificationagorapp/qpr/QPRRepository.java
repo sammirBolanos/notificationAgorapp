@@ -9,8 +9,9 @@ import org.springframework.data.repository.query.Param;
 public interface QPRRepository extends JpaRepository<QPR, String> {
 
 	@Query(value = """
-			SELECT radicado, nombre, pqrs, canal, username, secretaria, fecha_utc
-			FROM pqrs
+			SELECT radicado, pqrs, canal, fecha_utc, username, nombre, secretaria,
+			       titulo_ia, resumen_ia, clasificacion, fecha_limite, irrespetuosa, resuelta
+			FROM pqrs_procesada
 			WHERE regexp_replace(
 				lower(trim(translate(secretaria,
 					'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜáéíóúàèìòùäëïöüÑñ',

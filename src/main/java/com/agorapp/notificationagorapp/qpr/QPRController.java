@@ -48,7 +48,7 @@ public class QPRController {
     public ResponseEntity<QPR> resolverQpr(@PathVariable String id) {
         return qprRepository.findById(id)
                 .map(qpr -> {
-                    qpr.setPqrs("False");
+                    qpr.setResuelta(true);
                     return ResponseEntity.ok(qprRepository.save(qpr));
                 })
                 .orElse(ResponseEntity.notFound().build());
