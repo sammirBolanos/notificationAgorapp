@@ -27,6 +27,9 @@ public class QPR {
     @Column(nullable = false)
     private String username;
 
+    @Column(name = "secretaria")
+    private String secretaria;
+
     @Column(name = "fecha_utc", nullable = false)
     private LocalDateTime fechaUtc;
 
@@ -68,6 +71,14 @@ public class QPR {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getSecretaria() {
+        return secretaria;
+    }
+
+    public void setSecretaria(String secretaria) {
+        this.secretaria = secretaria;
     }
 
     public LocalDateTime getFechaUtc() {
