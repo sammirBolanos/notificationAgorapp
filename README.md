@@ -23,6 +23,10 @@ La app usa variables de entorno:
 
 `application.properties` ya está preparado con estos valores.
 
+Puerto por defecto para perfil `default` (Neon): `8082`.
+
+Nota: si no defines perfil, la app arranca por defecto en perfil `swagger` para facilitar pruebas locales.
+
 ### Ejemplo (PowerShell)
 
 ```powershell
@@ -31,6 +35,14 @@ $env:DB_USERNAME="<tu-usuario>"
 $env:DB_PASSWORD="<tu-password>"
 mvn spring-boot:run
 ```
+
+### Ejecucion desde VS Code (Run)
+
+La configuracion de depuracion en `.vscode/launch.json` usa `envFile=${workspaceFolder}/.env`.
+
+1. Crea un archivo `.env` en la raiz del proyecto.
+2. Puedes partir de `.env.example`.
+3. Asegurate de definir `DB_PASSWORD` con el valor real.
 
 ## Perfil `azure`
 
@@ -54,6 +66,34 @@ También puedes pasarlo por argumento:
 ```powershell
 mvn spring-boot:run -Dspring-boot.run.profiles=azure
 ```
+
+### Forzar perfil default (PostgreSQL/Neon)
+
+```powershell
+mvn spring-boot:run "-Dspring-boot.run.profiles=default"
+```
+
+## Perfil `swagger` (local sin PostgreSQL)
+
+Para probar endpoints y Swagger UI sin depender de Neon, usa el perfil `swagger`.
+
+Este perfil usa H2 en memoria y evita el error de autenticacion cuando `DB_PASSWORD` no es valido.
+
+### Ejecutar con Maven
+
+```powershell
+mvn spring-boot:run -Dspring-boot.run.profiles=swagger
+```
+
+### Ejecutar desde VS Code
+
+Selecciona la configuracion de ejecucion: `Spring Boot-Swagger Local (H2)`
+
+### URLs utiles
+
+- Swagger UI: `http://localhost:8081/swagger-ui/index.html`
+- OpenAPI: `http://localhost:8081/v3/api-docs`
+- H2 Console: `http://localhost:8081/h2-console`
 
 ## Notas de esquema
 

@@ -1,6 +1,25 @@
 package com.agorapp.notificationagorapp.qpr;
 
-import org.springframework.data.jpa.repository.JpaRepository;
+import java.util.List;
 
-public interface QPRRepository extends JpaRepository<QPR, Long> {
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
+
+public interface QPRRepository extends JpaRepository<QPR, String> {
+
+	@Query(value = """
+			SELECT radicado, pqrs, canal, fecha_utc, username, nombre, secretaria,
+			       titulo_ia, resumen_ia, clasificacion, fecha_limite, irrespetuosa, resuelta
+			FROM pqrs_procesada
+			WHERE regexp_replace(
+				lower(trim(translate(secretaria,
+					'ÁÉÍÓÚÀÈÌÒÙÄËÏÖÜáéíóúàèìòùäëïöüÑñ',
+					'AEIOUAEIOUAEIOUaeiouaeiouaeiounn'))),
+				'\\s+',
+				' ',
+				'g'
+			) = :secretariaNormalizada
+			""", nativeQuery = true)
+	List<QPR> findBySecretariaNormalizada(@Param("secretariaNormalizada") String secretariaNormalizada);
 }
